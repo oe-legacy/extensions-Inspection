@@ -1,0 +1,3 @@
+# dist file for Inspection
+darcs      /extensions/Inspection            http://openengine.dk/code/extensions/Inspection
+darcs-dev  /extensions/Inspection            fh.daimi.au.dk:/users/cgd/code/extensions/Inspection

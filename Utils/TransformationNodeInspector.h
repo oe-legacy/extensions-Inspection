@@ -18,23 +18,7 @@
 namespace OpenEngine {
 namespace Utils {
 
-using namespace Scene;
-/**
- * Short description.
- *
- * @class TransformationNodeInspector TransformationNodeInspector.h ons/Inspection/Utils/TransformationNodeInspector.h
- */
-// class TransformationNodeInspector : public IInspector {
-// private:
-//     TransformationNode* node;
-//     std::list<IValue> values;
-// public:
-//     TransformationNodeInspector(TransformationNode* node);
-//     std::list<IValue> Values();
-// };
-
-
-    ValueList Inspect(TransformationNode* node);
+    ValueList Inspect(Scene::TransformationNode* node);
 
 } // NS Utils
 } // NS OpenEngine

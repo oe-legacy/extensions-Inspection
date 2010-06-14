@@ -1,6 +1,5 @@
 #include "TransformationNodeInspector.h"
 
-#include <list>
 
 namespace OpenEngine {
 namespace Utils {

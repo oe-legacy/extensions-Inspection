@@ -3,6 +3,7 @@
 
 namespace OpenEngine {
 namespace Utils {
+namespace Inspection {
 
 using namespace Display;
 
@@ -29,5 +30,6 @@ ValueList Inspect(Camera *cam) {
     return values;    
 }
 
+}
 }
 }

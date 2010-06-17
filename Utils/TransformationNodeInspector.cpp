@@ -3,6 +3,7 @@
 
 namespace OpenEngine {
 namespace Utils {
+namespace Inspection {
 
 using namespace Scene;
 
@@ -39,5 +40,6 @@ ValueList Inspect(TransformationNode* node) {
     return values;
 }
 
+}
 }
 }

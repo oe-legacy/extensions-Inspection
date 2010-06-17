@@ -16,9 +16,11 @@
 
 namespace OpenEngine {
 namespace Utils {
+namespace Inspection {
 
     ValueList Inspect(Display::Camera* cam);
 
+}
 } // NS Utils
 } // NS OpenEngine
 

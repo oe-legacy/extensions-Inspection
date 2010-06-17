@@ -12,13 +12,14 @@
 #define _OE_I_INSPECTOR_H_
 
 #include <list>
+#include <map>
 #include <string>
 #include <functional>
 
 
 namespace OpenEngine {
 namespace Utils {
-
+    namespace Inspection {
     using namespace std;
 
 class IValue {
@@ -45,9 +46,16 @@ public:
 
     // };
 
+    enum Property {
+        MIN,
+        MAX,
+        STEP
+    };
+
 template <class T>
 class RWValue : public IValue {
 public:
+    map<Property,T> properties;
     virtual T Get() =0;
     virtual void Set(T) =0;
 };    
@@ -86,6 +94,8 @@ public:
 // };
 
 typedef list<IValue*> ValueList;
+ 
+}
 
 } // NS Utils
 } // NS OpenEngine

@@ -5,4 +5,6 @@ ADD_LIBRARY(Extensions_Inspection
   Utils/TransformationNodeInspector.cpp
   Utils/CameraInspector.h
   Utils/CameraInspector.cpp
+  Utils/PerspectiveViewingVolumeInspector.h
+  Utils/PerspectiveViewingVolumeInspector.cpp
 )

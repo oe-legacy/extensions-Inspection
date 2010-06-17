@@ -7,20 +7,21 @@
 // See the GNU General Public License for more details (see LICENSE).
 //--------------------------------------------------------------------
 
-
-#ifndef _OE_TRANSFORMATION_NODE_INSPECTOR_H_
-#define _OE_TRANSFORMATION_NODE_INSPECTOR_H_
+#ifndef _OE_PVV_INSPECTOR_H_
+#define _OE_PVV_INSPECTOR_H_
 
 #include <Utils/IInspector.h>
 
-#include <Scene/TransformationNode.h>
+#include <Display/PerspectiveViewingVolume.h>
 
 namespace OpenEngine {
 namespace Utils {
 namespace Inspection {
-    ValueList Inspect(Scene::TransformationNode* node);
+
+    ValueList Inspect(Display::PerspectiveViewingVolume* cam);
+
 }
 } // NS Utils
 } // NS OpenEngine
 
-#endif // _OE_TRANSFORMATION_NODE_INSPECTOR_H_
+#endif

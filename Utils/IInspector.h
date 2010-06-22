@@ -80,6 +80,30 @@ public:
     void Set(T v) {  (instance.*setFunc)(v); }
 };
 
+template <class C, class T>
+class RWValueToggle : public RWValue<bool> {
+public:
+    C& instance;
+    bool (C::*isEnabled)(T) const;
+    void (C::*enable)(T);
+    void (C::*disable)(T);
+    T v;
+
+    RWValueToggle(C& instance,
+                  bool (C::*isE)(T) const,
+                  void (C::*eF)(T),
+                  void (C::*dF)(T),
+                  T v)
+        : instance(instance),
+          isEnabled(isE),
+          enable(eF),
+          disable(dF),
+          v(v) {}
+
+    bool Get() {return (instance.*isEnabled)(v);}
+    void Set(bool e) { e ? (instance.*enable)(v) : (instance.*disable)(v); }
+
+};
 
 // /**
 //  * Short description.

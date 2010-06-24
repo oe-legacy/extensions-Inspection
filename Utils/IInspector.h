@@ -56,6 +56,8 @@ template <class T>
 class RWValue : public IValue {
 public:
     map<Property,T> properties;
+    bool isColor;
+    RWValue() : isColor(false) {}
     virtual T Get() =0;
     virtual void Set(T) =0;
 };    

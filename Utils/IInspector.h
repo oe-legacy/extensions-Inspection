@@ -107,6 +107,17 @@ public:
 
 };
 
+#define INSPECT_VALUE(_class, _type, _field, _name)                     \
+    do {                                                                \
+        RWValueCall<_class, _type> *v                                   \
+            = new RWValueCall<_class, _type>(*this,                     \
+                                             &_class::Get##_field,      \
+                                             &_class::Set##_field);     \
+        v->name = _name;                                                \
+    values.push_back(v);                                                \
+    } while (0)
+
+
 // /**
 //  * Short description.
 //  *

@@ -28,29 +28,30 @@ public:
     std::string name;
 };
 
-    // template <class T>
-    // class ICallback {
-    // // C& instance;
-    // // void (C::*setFunc)(T);
-    // // T (C::*getFunc)();
-    // public:
-    //     // , T (C::*gPtr)(), void (C::*sPtr)(T)
-    //     //,
-    //     //setFunc(sPtr),
-    //     //getFunc(gPtr)
-    //     T Get() {};
-    // };
+template <class T>
+class RValue : public IValue {
+public:
+    virtual T Get() =0;
+};
 
-    // template <class C, class T>
-    // class Callback : public ICallback<T> {
+template <class C, class T>
+class RValueCall : public RValue<T> {
+public:
+    C& instance;
+    T (C::*getFunc)();
+    RValueCall(C& instance,
+               T (C::*gFun)())
+        : instance(instance)
+        , getFunc(gFun) 
+    {}
+    T Get() { return (instance.*getFunc)(); }
+};
 
-    // };
-
-    enum Property {
-        MIN,
-        MAX,
-        STEP
-    };
+enum Property {
+    MIN,
+    MAX,
+    STEP
+};
 
 template <class T>
 class RWValue : public IValue {

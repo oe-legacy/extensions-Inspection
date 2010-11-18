@@ -28,6 +28,26 @@ public:
     std::string name;
 };
 
+class ActionValue : public IValue {
+public:
+    virtual void Call() =0;
+};
+
+template <class C>
+class ActionValueCall : public ActionValue {
+public:
+    C& instance;
+    void (C::*callFunc)();
+
+    ActionValueCall(C& instance,
+                void (C::*cFunc)())
+        : instance(instance)
+        , callFunc(cFunc) {}
+    void Call() {
+        (instance.*callFunc)();
+    }
+};
+
 template <class T>
 class RValue : public IValue {
 public:

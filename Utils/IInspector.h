@@ -19,8 +19,8 @@
 
 namespace OpenEngine {
 namespace Utils {
-    namespace Inspection {
-    using namespace std;
+namespace Inspection {
+using namespace std;
 
 class IValue {
 public:
@@ -53,6 +53,7 @@ class RValue : public IValue {
 public:
     virtual T Get() =0;
 };
+
 
 template <class C, class T>
 class RValueCall : public RValue<T> {
@@ -103,6 +104,58 @@ public:
     void Set(T v) {  (instance.*setFunc)(v); }
 };
 
+class EnumValue : public RWValue<unsigned int> {
+public:    
+    virtual string GetEnumName() =0;
+
+    virtual map<string,int> GetEnumMap() =0;
+
+    virtual int GetSize() =0;
+    virtual void Set(unsigned int) =0;
+    virtual unsigned int Get() =0;
+
+};
+
+
+template <class C, class T>
+class EnumRWValueCall : public EnumValue {
+    RWValueCall<C,T> rwc;
+    map<string,int> enums;
+    string ename;
+public:
+    EnumRWValueCall(C& inst,
+                    T (C::*gF)(),
+                    void (C::*sF)(T),
+                    string en)
+        : rwc(inst,gF,sF)
+        , ename(en) {}
+
+    void AddEnum(string n, T v) {
+        enums[n] = v;
+    }
+
+    string GetEnumName() {
+        return ename;
+    }
+
+    void Set(unsigned int v) {
+        rwc.Set((T)v);
+    }
+    unsigned int Get() {
+        return rwc.Get();
+    }
+
+    int GetSize() {
+        return enums.size();
+    }
+
+    map<string,int> GetEnumMap() {
+        return enums;
+    }
+
+};
+    
+
 template <class C, class T>
 class RWValueToggle : public RWValue<bool> {
 public:
@@ -135,21 +188,9 @@ public:
                                              &_class::Get##_field,      \
                                              &_class::Set##_field);     \
         v->name = _name;                                                \
-    values.push_back(v);                                                \
+        values.push_back(v);                                            \
     } while (0)
 
-
-// /**
-//  * Short description.
-//  *
-//  * @class IInspector IInspector.h ons/Inspection/Utils/IInspector.h
-//  */
-// class IInspector {
-// private:
-
-// public:
-//     virtual std::list<IValue> Values() = 0;
-// };
 
 typedef list<IValue*> ValueList;
  
